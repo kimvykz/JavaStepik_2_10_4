@@ -1,19 +1,25 @@
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
+
+
         double a, b;
-        String oper;
-        String as, bs;
+        String oper, as, bs;
 
 
-        as = sc.next() ;
-        oper = sc.next();
-        bs = sc.next();
 
-        try {
+
+        try (FileReader fr = new FileReader("input.txt")) {
+            Scanner sc = new Scanner(fr);
+
+            as = sc.next() ;
+            oper = sc.next();
+            bs = sc.next();
+
             a = Double.parseDouble(as);
             b = Double.parseDouble(bs);
             if (!"-+*/".contains(oper)) {
@@ -33,6 +39,9 @@ public class Program {
         }
         catch (ArithmeticException aEx) {
             System.out.println("Error! Division by zero");
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
     }
