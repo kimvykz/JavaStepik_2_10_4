@@ -1,19 +1,15 @@
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
 
-        //Scanner sc = new Scanner(System.in);
-
-
-        double a, b;
+        double a, b, res_;
         String oper, as, bs;
 
-
-
-
-        try (FileReader fr = new FileReader("input.txt")) {
+        try (FileReader fr = new FileReader("input.txt");
+             FileWriter fw = new FileWriter("output.txt")) {
             Scanner sc = new Scanner(fr);
 
             as = sc.next() ;
@@ -28,7 +24,11 @@ public class Program {
             if (oper.equals("/") && b == 0.0) {
                 throw new ArithmeticException("Error! Division by zero");
             }
-            System.out.println(calc(a, b, oper));
+
+            res_ = calc(a, b, oper);
+            System.out.println(res_);
+
+            fw.write(String.valueOf(res_));
 
         }
         catch (NumberFormatException nfEx) {
